@@ -1,9 +1,14 @@
 const http = require('http');
+const app = require('./app');
 
-const server = http.createServer((req, res) => {
-    res.end('Voilà la réponse du serveur by moueza!');
-});
+
+
+
+app.set('port', process.env.PORT || 3000);
+
+
+const server = http.createServer(app);
+
+
 
 server.listen(process.env.PORT || 3000);
-//log.error
-console.log('server running');
