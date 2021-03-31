@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+const Thing = require('./models/thing');
 
 mongoose.connect('mongodb+srv://openclassrooms-6390246-passez-au-full-stack-avec-node-js-express-et-mongodb:NaNSw7jek1VJXJeY@cluster0.5vi6h.mongodb.net/test?retryWrites=true&w=majority',
 		 { useNewUrlParser: true,
@@ -23,10 +24,16 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.post('/api/stuff', (req, res, next) => {
-    console.log(req.body);
-    res.status(201).json({
-	message: 'Objet créé !'
-    });
+	delete req.body._id;
+	const thing = new Thing({
+		/**spread */
+	  ...req.body
+	});
+	/**promise */
+	thing.save()
+	  .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
+	  .catch(error => res.status(400).json({ error }));
+    
 });
 
 
