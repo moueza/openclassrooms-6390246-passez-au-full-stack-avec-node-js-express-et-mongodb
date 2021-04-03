@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-const Thing = require('./models/thing');
+//const Thing = require('./models/thing');
+const Thing = require('./models/Thing');
 
 mongoose.connect('mongodb+srv://openclassrooms-6390246-passez-au-full-stack-avec-node-js-express-et-mongodb:NaNSw7jek1VJXJeY@cluster0.5vi6h.mongodb.net/test?retryWrites=true&w=majority',
 		 { useNewUrlParser: true,
